@@ -1,0 +1,546 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A0E6E78F-0744-4787-B9EA-55D88C5C05F6}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Api_nonSDK_example</RootNamespace>
+    <AssemblyName>Api_nonSDK_example</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Economic.Api, Version=1.4.8.2, Culture=neutral, PublicKeyToken=0b95ee7ebdda7bdd, processorArchitecture=MSIL">
+      <HintPath>..\..\dev-tools\eco-api-ex\Economic.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Economic.Api.XmlSerializers, Version=1.4.8.2, Culture=neutral, PublicKeyToken=0b95ee7ebdda7bdd, processorArchitecture=MSIL">
+      <HintPath>..\..\dev-tools\eco-api-ex\Economic.Api.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EconomicModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\EcoApiServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.AccountData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.AccountHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.AccountingPeriodData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.AccountingPeriodHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.AccountingPeriodStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.AccountingYearData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.AccountingYearHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.AccountType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ActivityData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ActivityHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ArrayOfDecimal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.BankPaymentTypeData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.BankPaymentTypeHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.BudgetFigureData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.BudgetFigureHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CashBookData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CashBookEntryData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CashBookEntryHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CashBookEntryType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CashBookHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CompanyData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CompanyHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CostTypeData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CostTypeGroupData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CostTypeGroupHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CostTypeHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CreditorContactData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CreditorContactHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CreditorData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CreditorEntryData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CreditorEntryHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CreditorGroupData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CreditorGroupHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CreditorHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CurrencyData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CurrencyHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CurrentInvoiceData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CurrentInvoiceHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CurrentInvoiceLineData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CurrentInvoiceLineHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CurrentSupplierInvoiceData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CurrentSupplierInvoiceHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CurrentSupplierInvoiceLineData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.CurrentSupplierInvoiceLineHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DebitCredit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DebtorContactData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DebtorContactHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DebtorData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DebtorEntryData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DebtorEntryHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DebtorGroupData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DebtorGroupHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DebtorHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DeliveryLocationData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DeliveryLocationHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DepartmentData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DepartmentHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DistributionKeyData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DistributionKeyHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DocumentArchiveCategoryData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DocumentArchiveCategoryHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.DocumentStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.EmployeeData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.EmployeeGroupData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.EmployeeGroupHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.EmployeeHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.EntryData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.EntryHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.EntryType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.InvoiceData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.InvoiceHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.InvoiceLineData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.InvoiceLineHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.KeyFigureCodeData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.KeyFigureCodeHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.MileageEntryData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.MileageEntryHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.OrderData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.OrderHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.OrderLineData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.OrderLineHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.PriceGroupData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.PriceGroupHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ProductData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ProductGroupData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ProductGroupHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ProductHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ProductPriceData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ProductPriceHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ProjectData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ProjectGroupData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ProjectGroupHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ProjectHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.QuotationData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.QuotationHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.QuotationLineData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.QuotationLineHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ReportCodeData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ReportCodeHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ReportCodeSetData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ReportCodeSetHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ScannedDocumentData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.ScannedDocumentHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.SubscriberData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.SubscriberHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.SubscriptionCollection.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.SubscriptionData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.SubscriptionHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.SubscriptionInterval.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.SubscriptionLineData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.SubscriptionLineHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.SumIntervalData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.SumIntervalHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.TemplateCollectionData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.TemplateCollectionHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.TermOfPaymentData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.TermOfPaymentHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.TermOfPaymentType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.TimeEntryData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.TimeEntryHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.UnitData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.UnitHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.VatAccountData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.VatAccountHandle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.VatAccountType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\Api_nonSDK_example.EcoApiServiceReference.VatZone.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EcoApiServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\EcoApiServiceReference\configuration.svcinfo" />
+    <None Include="Service References\EcoApiServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\Application\ExampleView.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\Error.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\EcoApiServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EcoApiServiceReference\EconomicWebService.wsdl" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>36973</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
