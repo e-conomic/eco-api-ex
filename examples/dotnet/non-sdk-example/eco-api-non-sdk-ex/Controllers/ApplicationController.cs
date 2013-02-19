@@ -42,17 +42,16 @@ namespace Api_nonSDK_example.Controllers
             return View("ExampleView");
         }
 
-        public ActionResult Connect(/*int agreementNo, string username, string password*/ string token, string appToken)
+        public ActionResult Connect(string token, string appToken)
         {
 
-            // comment this...
+            // create the webservice client to get data. Remember the "allowCookies"-part..
             var session = new EconomicWebServiceSoapClient();
             ((BasicHttpBinding)session.Endpoint.Binding).AllowCookies = true;
 
             try
             {
                 session.ConnectWithToken(token, appToken);
-                //session.Connect(agreementNo, username, password);
             }
             catch (Exception e)
             {
@@ -85,7 +84,6 @@ namespace Api_nonSDK_example.Controllers
 
             try
             {
-
                 //create a product-group for the new product
                 var accHandle = session.Account_FindByNumber(1010);
                 var productGroup = new ProductGroupData
@@ -142,7 +140,6 @@ namespace Api_nonSDK_example.Controllers
             
             try
             {
-
                 // create debtor group
                 var debtorGroup = new DebtorGroupData
                 {
@@ -180,7 +177,6 @@ namespace Api_nonSDK_example.Controllers
             }
 
             ViewData["message"] = "Debtor and debtorgroup created!";
-
             return View("ExampleView");
         }
 
@@ -188,7 +184,6 @@ namespace Api_nonSDK_example.Controllers
         {
             try
             {
-
                 var accHandle = (AccountHandle)Session["accHandle"];
 
                 var session = EcoSession;
@@ -216,7 +211,6 @@ namespace Api_nonSDK_example.Controllers
                 };
 
                 session.OrderLine_CreateFromDataArray(orderLines);
-
                 order.Handle = orderHandle;
                 EconomicModels.Order = order;
 
@@ -227,7 +221,6 @@ namespace Api_nonSDK_example.Controllers
             }
 
             ViewData["message"] = "Order created and orderlines added!";
-
             return View("ExampleView");
         }
 
@@ -250,7 +243,6 @@ namespace Api_nonSDK_example.Controllers
             }
 
             ViewData["message"] = "Order upgraded to invoice!";
-
             return View("ExampleView");
         }
     }
