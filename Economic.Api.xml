@@ -48303,6 +48303,21 @@
         <member name="P:Economic.Api.Client.WebService.GetApiInformationCompletedEventArgs.Result">
             <remarks/>
         </member>
+        <member name="T:Economic.Api.EmployeeType">
+            <summary>
+            Specifies the different types of Employees.
+            </summary>
+        </member>
+        <member name="F:Economic.Api.EmployeeType.TimeLogger">
+            <summary>
+            The employee is a timelogger
+            </summary>
+        </member>
+        <member name="F:Economic.Api.EmployeeType.ProjectManager">
+            <summary>
+            The employee is a projectmanager
+            </summary>
+        </member>
         <member name="T:Economic.Api.IAccount">
             <summary>Represents an account.</summary><remarks></remarks><seealso cref="T:Economic.Api.IAccountUtil"/>
         </member>
