@@ -4302,6 +4302,11 @@
         <member name="P:Economic.Api.Data.IProductGroupData.Accrual">
             <summary>See <see cref="P:Economic.Api.IProductGroup.Accrual">IProductGroup.Accrual</see>.</summary>
         </member>
+        <member name="P:Economic.Api.Data.IProductGroupData.InventoryWithdrawal">
+            <summary>
+            Whether the product group has inventory withdrawal or not - requires the inventory module
+            </summary>
+        </member>
         <member name="M:Economic.Api.ProductGroupData.Equals(System.Object)">
             <summary>Overloaded. Determines whether two <see cref="T:System.Object"/> instances are equal. (Inherited from <see cref="T:System.Object"/>.)</summary>
         </member>
@@ -5947,6 +5952,9 @@
             <summary>Returns current supplier invoice data objects for a given set of current supplier invoices.</summary><param name="entities">The current supplier invoices.</param><returns>The current supplier invoice data objects.</returns>
         </member>
         <member name="M:Economic.Api.CurrentSupplierInvoiceDataUtil.Create(Economic.Api.ICreditor)">
+            <summary>Creates a current supplier invoice data object without creating a new current supplier invoice.</summary><param name="creditor">The creditor for the current supplier invoice data object.</param><returns>The created current supplier invoice data object.</returns>
+        </member>
+        <member name="M:Economic.Api.CurrentSupplierInvoiceDataUtil.Create(Economic.Api.ICreditor,System.String)">
             <summary>Creates a current supplier invoice data object without creating a new current supplier invoice.</summary><param name="creditor">The creditor for the current supplier invoice data object.</param><returns>The created current supplier invoice data object.</returns>
         </member>
         <member name="M:Economic.Api.CurrentSupplierInvoiceDataUtil.GetData(Economic.Api.ICurrentSupplierInvoice)">
@@ -8967,7 +8975,7 @@
             <summary>Gets or sets the discount of the order line as percent.</summary>
         </member>
         <member name="P:Economic.Api.IOrderLine.UnitCostPrice">
-            <summary>Gets the cost price per unit without VAT in the default currency.</summary>
+            <summary>Gets or sets the cost price per unit without VAT in the default currency.</summary>
         </member>
         <member name="P:Economic.Api.IOrderLine.TotalNetAmount">
             <summary>Gets the total amount of the order line without VAT in the currency of the order.</summary>
@@ -12487,6 +12495,12 @@
         </member>
         <member name="M:Economic.Api.ITimeEntryUtil.FindApprovedByDate(System.DateTime,System.DateTime)">
             <summary>Returns an array of TimeEntry entries within a date interval.</summary><param name="fromDate">The beginning of the interval.</param><param name="toDate">The end of the interval.</param><returns>The array of the entries in the interval, or <c>null</c>.</returns>
+        </member>
+        <member name="M:Economic.Api.ITimeEntryUtil.ApproveEntries(Economic.Api.ITimeEntry[])">
+            <summary>Approves the entries passed to the function.</summary><param name="entries">The time entries to be approved.</param><returns>Nothing.</returns>
+        </member>
+        <member name="M:Economic.Api.TimeEntryUtil.ApproveEntries(Economic.Api.ITimeEntry[])">
+            <summary>Approves the entries passed to the function.</summary><param name="entries">The time entries to be approved.</param><returns>Nothing.</returns>
         </member>
         <member name="M:Economic.Api.TimeEntryUtil.CreateFromDataArray(Economic.Api.Data.ITimeEntryData[])">
             <summary>Creates new time entries from corresponding data objects.</summary><remarks>The properties <see cref="P:Economic.Api.Data.ITimeEntryData.Project"/> and <see cref="P:Economic.Api.Data.ITimeEntryData.Activity"/> <see cref="P:Economic.Api.Data.ITimeEntryData.Employee"/> <see cref="P:Economic.Api.Data.ITimeEntryData.Date"/> <see cref="P:Economic.Api.Data.ITimeEntryData.Text"/> <see cref="P:Economic.Api.Data.ITimeEntryData.NumberOfHours"/> of the data objects may not be <c>null</c>.</remarks><param name="dataArray">The array of data objects that specifies the properties of the new time entries.</param><returns>An array of the new time entries.</returns>
