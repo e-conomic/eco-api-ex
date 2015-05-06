@@ -502,6 +502,23 @@
             <param name="message"></param>
             <returns></returns>
         </member>
+        <member name="M:Economic.Api.EconomicSession.#ctor(System.String)">
+            <summary>
+            <param name="economicApp">
+            App identification. If no identification is provided you will be denied access to the API. Recommended identification format is MyAppName/1.1 (http://example.com/MyAppName/; MyAppName@example.com).
+            </param>
+            </summary>
+        </member>
+        <member name="M:Economic.Api.EconomicSession.#ctor(Economic.Api.SessionOptions,System.String)">
+            <summary>
+            <param name="options">
+            Options for session.
+            </param>
+            <param name="userAgent">
+            Custom user agent for your integration. If no user agent is provided you will be denied access to the API. Recommended user agent format is MyAppName/1.1 (http://example.com/MyAppName/; MyAppName@example.com).
+            </param>
+            </summary>
+        </member>
         <member name="M:Economic.Api.EconomicSession.Connect(System.Int32,System.String,System.String)">
             <summary>Connects to the server.</summary><remarks>An exception will be thrown if the given credentials is not correct.</remarks><param name="agreementNumber">The agreement number for the subscription.</param><param name="userName">The user name of the subscription.</param><param name="password">The password for the user name.</param><returns>The session id if the session has been connected.</returns>
         </member>
