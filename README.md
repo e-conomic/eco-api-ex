@@ -12,7 +12,7 @@ This release also includes a breaking change. You now have to specify an App Ide
 
 You will need to uprade to this latest SDK as soon as possible. In the fall of 2015 this is the only SDK assembly that will work. All older binaries that do not include an app identifier in all requests will be rejected by our servers.
 
-#### C# Example
+Below you can find a C# example
 ```C#
 using (var operationScope = new OperationContextScope(session.InnerChannel))
 {
