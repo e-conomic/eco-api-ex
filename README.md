@@ -12,6 +12,19 @@ This release also includes a breaking change. You now have to specify an App Ide
 
 You will need to uprade to this latest SDK as soon as possible. In the fall of 2015 this is the only SDK assembly that will work. All older binaries that do not include an app identifier in all requests will be rejected by our servers.
 
+#### C# Example
+```C#
+using (var operationScope = new OperationContextScope(session.InnerChannel))
+{
+    // Add a HTTP Header to an outgoing request
+    var requestMessage = new HttpRequestMessageProperty();
+    requestMessage.Headers["X-EconomicAppIdentifier"] = "MyCoolIntegration/1.1 (http://example.com/MyCoolIntegration/; MyCoolIntegration@example.com) BasedOnSuperLib/1.4";
+    OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = requestMessage;
+ 
+    session.Connect(<agreement>, <user>, <password>);
+}
+```
+
 ### Alternatives to this SDK
 
 You can find more developer resources at http://www.e-conomic.com/developer
