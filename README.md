@@ -4,7 +4,7 @@ This SDK is intended to make it easier to use the SOAP API made available by e-c
 
 ## THIS SDK IS DEPRECATED
 
-The current relase (v1.4.18) which is released on May 6th 2015 is the last release of the SDK. From this date the SDK has been deprecated and we no longer advise the use of this SDK. We will no longer fix bugs in this SDK. If you encounter bugs or want new functionality, we refer you to use our SOAP api directly or take a look at our REST api.
+The current relase (v1.4.20) which is released on Sep 17th 2015 is the last release of the SDK. From this date the SDK has been deprecated and we no longer advise the use of this SDK. We will no longer fix bugs in this SDK. If you encounter bugs or want new functionality, we refer you to use our SOAP api directly or take a look at our REST api.
 
 This last release includes some bugfixes and minor improvements. So if you do use this API today, we strongly urge you to upgrade to this version.
 
