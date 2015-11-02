@@ -1,31 +1,14 @@
-# e-conomic .Net SDK
+#### Looking for e-conomic .Net SDK? It has moved!
+Find the SDK here: https://github.com/e-conomic/eco-api-sdk
 
-This SDK is intended to make it easier to use the SOAP API made available by e-conomic to integration partners.
+# e-conomic API examples
+##Examples for basic e-conomic SOAP API and REST API interaction.
 
-## THIS SDK IS DEPRECATED 
-#### NB: SOAP IS NOT DEPRECATED. ONLY THE SDK.
+We advice that you use our REST API if it covers your needs today. The REST API is currently under development and does not cover all functionality of e-conomic, but it is where our development resources are focused. Our SOAP API is still supported, and is currently the API that covers most of the e-conomic functionality.
 
-The current release (v1.4.20) which is released on Sep 17th 2015 is the last release of the SDK. From this date the SDK has been deprecated and we no longer advise the use of this SDK. We will no longer fix bugs in this SDK. If you encounter bugs or want new functionality, we refer you to use our SOAP API directly or take a look at our REST API.
+For in-context examples of using the REST API please see the REST API Documentation: http://restdocs.e-conomic.com/
 
-This last release includes some bugfixes and minor improvements. So if you do use this API today, we strongly urge you to upgrade to this version.
-
-This release also includes a breaking change. You now have to specify an App Identifier string when creating a new instance of EconomicSession. This is a string, that identifies your app to us. The recommended identifier format is `MyAppName/1.1 (http://example.com/MyAppName/; MyAppName@example.com)`.
-
-You will need to uprade to this latest SDK as soon as possible. In the fall of 2015 this is the only SDK assembly that will work. All older binaries that do not include an app identifier will be rejected by our servers.
-
-Below you can find a C# example
-```C#
-string myIdentifier = "MyCoolIntegration/1.1 (http://example.com/MyCoolIntegration/; MyCoolIntegration@example.com) BasedOnSuperLib/1.4";
-var webservice = new EconomicSession(myIdentifier);
-```
-
-### Alternatives to this SDK
-
-You can find more developer resources at http://www.e-conomic.com/developer
-
-We advice that you use our REST Api if this covers your needs today. This is currently under development and does not cover all functionality, but this is where our development resources are focused. Our SOAP Api is still supported, and is currently the API that covers most of the e-conomic functionality.
-
-_When using the SOAP API directly you are required to define the AppIdentifier like this:_
+_When using the SOAP API methods Connect() and ConnectAsAdministrator() you are required to define an AppIdentifier like so:_
 ```C#
 using (var operationScope = new OperationContextScope(session.InnerChannel))
 {
@@ -37,3 +20,4 @@ using (var operationScope = new OperationContextScope(session.InnerChannel))
     session.Connect(<agreement>, <user>, <password>);
 }
 ```
+The AppIdentifier is only readable by e-conomic. Please include as much information as necessary for us to be able to reach you the developers efficiently.
