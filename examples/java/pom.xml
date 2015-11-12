@@ -50,9 +50,6 @@ http://maven.apache.org/maven-v4_0_0.xsd">
                             <wsdlOptions>
                                 <wsdlOption>
                                     <wsdl>https://api.e-conomic.com/secure/api1/EconomicWebService.asmx?wsdl</wsdl>
-                                    <extraargs>
-                                        <extraarg>-client</extraarg>
-                                    </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>
@@ -88,6 +85,17 @@ http://maven.apache.org/maven-v4_0_0.xsd">
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.economic.example.SoapClient.SoapClient</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
