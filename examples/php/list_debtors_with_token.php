@@ -8,7 +8,7 @@ header('Content-type: text/html; charset="utf-8"');
 
 <head>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 	<style type="text/css">
 
@@ -38,7 +38,7 @@ header('Content-type: text/html; charset="utf-8"');
 
 
 
-try 
+try
 
 {
 
@@ -56,21 +56,32 @@ try
 
 			exit(0);
 
-		}		
+		}
 
 	}
 
 	$me = $_SERVER['PHP_SELF'];
 
-	
+
 
 	$wsdlUrl = 'https://api.e-conomic.com/secure/api1/EconomicWebservice.asmx?WSDL';
 
-		
+	$client = new SoapClient(
+		$wsdlUrl,
+		array(
+			"trace" => 1,
+			"exceptions" => 1,
+			"stream_context" => stream_context_create(
+				array(
+					"http" => array(
+						"header" => "X-EconomicAppIdentifier: MyCoolIntegration/1.1 (http://example.com/MyCoolIntegration/; MyCoolIntegration@example.com) BasedOnSuperLib/1.4"
+					)
+				)
+			)
+		)
+	);
 
-	$client = new SoapClient($wsdlUrl, array("trace" => 1, "exceptions" => 1));    		
 
-	
 
 	$client->ConnectWithToken(array(
 
@@ -256,13 +267,13 @@ try
 
 		try
 
-		{	
+		{
 
 			$debtorHandle = $client->Debtor_FindByNumber(array('number' => $_POST['debtor_number']))->Debtor_FindByNumberResult;
 
 			$orderHandles = $client->Debtor_GetOrders(array('debtorHandle' => $debtorHandle))->Debtor_GetOrdersResult->OrderHandle;
 
-			
+
 
 			$num_orders = count($orderHandles);
 
@@ -270,7 +281,7 @@ try
 
 			if($num_orders > 0)
 
-			{	
+			{
 
 				if($num_orders > 1)
 
@@ -288,7 +299,7 @@ try
 
 				}
 
-				?>		
+				?>
 
 				<h1>Orders</h1>
 
@@ -304,7 +315,7 @@ try
 
 						<td><b>Order total</b></td>
 
-						<td class="white_field"></td> 
+						<td class="white_field"></td>
 
 					</tr>
 
@@ -368,7 +379,7 @@ try
 
 			print("<p><i>" . $exception->getMessage() . "</i></p>");
 
-		}	 
+		}
 
 	}
 
@@ -390,7 +401,7 @@ try
 
 		</tr>
 
-		
+
 
 		<tr>
 
@@ -398,7 +409,7 @@ try
 
 		</tr>
 
-		
+
 
 		<tr>
 
@@ -406,7 +417,7 @@ try
 
 		</tr>
 
-		
+
 
 		<tr>
 
