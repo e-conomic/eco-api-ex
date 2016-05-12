@@ -3,9 +3,9 @@ header('Content-type: text/html; charset="utf-8"');
 ?>
 <html>
 <head>
+	<title>e-conomic SOAP API PHP example (token)</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<style type="text/css">
-
  		body { font-family: Verdana; }
 
  		h1 { font-size: 15px; }
@@ -19,7 +19,6 @@ header('Content-type: text/html; charset="utf-8"');
  		.odd_row { background-color: #FFFD82; }
 
  		.white_field { background-color: #FFFFFF;}
-
 	</style>
 </head>
 <body>
@@ -37,7 +36,10 @@ try
 		}
 	}
 
+	checkParameter("agreementGrantToken");
+	checkParameter("appSecretToken");
 	$me = $_SERVER['PHP_SELF'];
+
 	$wsdlUrl = 'https://api.e-conomic.com/secure/api1/EconomicWebservice.asmx?WSDL';
 
 	$client = new SoapClient(
@@ -45,20 +47,20 @@ try
 		array(
 			"trace" => 1,
 			"exceptions" => 1,
+			"features" => SOAP_SINGLE_ELEMENT_ARRAYS,
 			"stream_context" => stream_context_create(
 				array(
 					"http" => array(
-						"header" => "X-EconomicAppIdentifier: MyCoolIntegration/1.1 (http://example.com/MyCoolIntegration/; MyCoolIntegration@example.com) BasedOnSuperLib/1.4"
+						"header" => "X-EconomicAppIdentifier: Awesomeness to the max"
 					)
 				)
 			)
 		)
 	);
-
 	$client->ConnectWithToken(
 		array(
-		'token'    => $_REQUEST['token'],
-		'appToken' => $_REQUEST['appToken']
+			'token' 	=> $_REQUEST['agreementGrantToken'],
+			'appToken'	=> $_REQUEST['appSecretToken']
 		)
 	);
 
@@ -66,38 +68,45 @@ try
 	{
 		try
 		{
+			//Fetch first DebtorGroup
 			$debtorGroupHandles = $client->debtorGroup_GetAll()->DebtorGroup_GetAllResult->DebtorGroupHandle;
-			$firstDebtorGroup = $debtorGroupHandles[0];
-			$newDebtorHandle = $client->Debtor_Create(
-								array(
-									'number'            => $_POST['debtor_number'],
-									'debtorGroupHandle' => $firstDebtorGroup,
-									'name'              => $_POST['debtor_name'],
-									'vatZone'           => 'EU'
+
+			//Fetch first TermOfPayment (Highly cacheable data)
+			$termOfPaymentHandles = $client->TermOfPayment_GetAll()->TermOfPayment_GetAllResult->TermOfPaymentHandle;
+
+			$newDebtorFromData = $client->Debtor_CreateFromData(
+								array( 'data' =>
+									array(
+										'Handle'				=> array('Number' => $_POST['debtor_number']),
+										'Number'            	=> $_POST['debtor_number'],
+										'DebtorGroupHandle' 	=> array_values($debtorGroupHandles)[0],
+										'Name'              	=> $_POST['debtor_name'],
+										'VatZone'           	=> 'EU',
+										'CurrencyHandle'		=> array('Code' => 'DKK'),
+										'IsAccessible'			=> true,
+										'Ean'					=> null,
+										'Address'				=> $_POST['debtor_address'],
+										'PostalCode'			=> $_POST['debtor_postalcode'],
+										'City'					=> $_POST['debtor_city'],
+										'Country'				=> $_POST['debtor_country'],
+										'CINumber'				=> $_POST['debtor_cinumber'],
+										'TermOfPaymentHandle'	=> array_values($termOfPaymentHandles)[0]
+									)
 								)
-							)->Debtor_CreateResult;
+							)->Debtor_CreateFromDataResult;
 
-			$client->Debtor_SetAddress(
-				array(
-					'debtorHandle' => $newDebtorHandle,
-					'value'        => $_POST['debtor_address']
-				)
-			);
-
-			print("<p>A new debtor has be created.</p>");
+			print("<p>A new debtor has been created.</p>");
 		}
 		catch(Exception $exception)
 		{
 			print("<p><b>Could not create debtor.</b></p>");
-
 			print("<p><i>" . $exception->getMessage() . "</i></p>");
 		}
 	}
 
 	// Fetch list of all debtors.
 	$debtorHandles = $client->Debtor_GetAll()->Debtor_GetAllResult->DebtorHandle;
-
-	$debtorDataObjects =$client->Debtor_GetDataArray(
+	$debtorDataObjects = $client->Debtor_GetDataArray(
 							array('entityHandles' => $debtorHandles)
 						)->Debtor_GetDataArrayResult->DebtorData;
 ?>
@@ -110,18 +119,19 @@ try
 			<td><b>PostalCode</b></td>
 			<td><b>City</b></td>
 			<td><b>Country</b></td>
+			<td><b>CINumber/CVR</b></td>
 			<td class="white_field"></td>
 		</tr>
 	<?php foreach ($debtorDataObjects as $i => $debtorData) : ?>
-
 		<tr class="<?php if($i % 2 == 0) echo 'even_row'; else echo 'odd_row' ?>">
-			<form action="<?php echo $me . "?token=" . $_REQUEST['token'] . "&appToken=" . $_REQUEST['appToken'] . "&password=" ;?>" method="post">
-					<td><?php print $debtorData->Number ?>&nbsp;</td>
-					<td><?php print $debtorData->Name ?>&nbsp;</td>
-					<td><?php print $debtorData->Address ?>&nbsp;</td>
-					<td><?php print $debtorData->PostalCode ?>&nbsp;</td>
-					<td><?php print $debtorData->City ?>&nbsp;</td>
-					<td><?php print $debtorData->Country ?>&nbsp;</td>
+			<form action="<?php echo $me . "?agreementGrantToken=" . $_REQUEST['agreementGrantToken'] . "&appSecretToken=" . $_REQUEST['appSecretToken'];?>" method="post">
+					<td><?php if (property_exists($debtorData,'Number')) { print $debtorData->Number; } ?>&nbsp;</td>
+					<td><?php if (property_exists($debtorData,'Name')) { print $debtorData->Name; } ?>&nbsp;</td>
+					<td><?php if (property_exists($debtorData,'Address')) { print $debtorData->Address; } ?>&nbsp;</td>
+					<td><?php if (property_exists($debtorData,'PostalCode')) { print $debtorData->PostalCode; } ?>&nbsp;</td>
+					<td><?php if (property_exists($debtorData,'City')) { print $debtorData->City; } ?>&nbsp;</td>
+					<td><?php if (property_exists($debtorData,'Country')) { print $debtorData->Country; } ?>&nbsp;</td>
+					<td><?php if (property_exists($debtorData,'CINumber')) { print $debtorData->CINumber; } ?>&nbsp;</td>
 					<td class="white_field">
 						<input type="hidden" name="action" value="show_orders">
 						<input type="hidden" name="debtor_number" value="<?php print $debtorData->Number ?>">
@@ -131,24 +141,19 @@ try
 		</tr>
 	<?php endforeach; ?>
 	</table>
-
 <?php	//Delete an order
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'delete_order')
 	{
 		try
 		{
-			$orderHandle = $client->Order_FindByNumber(
-								array('number' => $_POST['order_number'])
-							)->Order_FindByNumberResult;
-
-			$client->Order_Delete(array('orderHandle' => $orderHandle));
+			$client->Order_Delete(array('orderHandle' => array('Id' => $_POST['order_id'])));
 
 			echo "Order deleted.";
 		}
 		catch(Exception $exception)
 		{
-			print("<p><b>Error delting order with order number: ". $_POST['order_number']. "</b></p>");
+			print("<p><b>Error deleting order number ". $_POST['order_number']. " with order id: ". $_POST['order_id']. "</b></p>");
 			print("<p><i>" . $exception->getMessage() . "</i></p>");
 		}
 	}
@@ -158,34 +163,22 @@ try
 	{
 		try
 		{
-			$debtorHandle = $client->Debtor_FindByNumber(
-								array('number' => $_POST['debtor_number'])
-							)->Debtor_FindByNumberResult;
-
 			$orderHandles = $client->Debtor_GetOrders(
-								array('debtorHandle' => $debtorHandle)
+								array('debtorHandle' => array('Number' => $_POST['debtor_number']))
 							)->Debtor_GetOrdersResult->OrderHandle;
 
 			$num_orders = count($orderHandles);
 
 			if ($num_orders > 0)
 			{
-				if ($num_orders > 1)
-				{
-					$orderDataObjects = $client->Order_GetDataArray(
+				$orderDataObjects = $client->Order_GetDataArray(
 											array('entityHandles' => $orderHandles)
 									)->Order_GetDataArrayResult->OrderData;
-				}
-				else
-				{
-					$orderDataObjects[] = $client->Order_GetData(
-											array('entityHandle' => $orderHandles)
-										)->Order_GetDataResult;
-				}
 				?>
 				<h1>Orders</h1>
 				<table border="0">
 					<tr class="header_row">
+						<td><b>Order number</b></td>
 						<td><b>Order date</b></td>
 						<td><b>Debtor name</b></td>
 						<td><b>Delivery addr.</b></td>
@@ -194,14 +187,15 @@ try
 					</tr>
 					<?php foreach ($orderDataObjects as $i => $orderData) : ?>
 					<tr class="<?php if($i % 2 == 0) echo 'even_row'; else echo 'odd_row' ?>">
-						<form action="<?php echo $me . "?token=" . $_REQUEST['token'] . "&appToken=" . $_REQUEST['appToken'];?>" method="post">
+						<form action="<?php echo $me . "?agreementGrantToken=" . $_REQUEST['agreementGrantToken'] . "&appSecretToken=" . $_REQUEST['appSecretToken'];?>" method="post">
+						<td ><?php print $orderData->Number ?>&nbsp;</td>
 						<td><?php print substr($orderData->Date, 0,10); ?>&nbsp;</td>
 						<td ><?php print $orderData->DebtorName ?>&nbsp;</td>
 						<td ><?php print $orderData->DeliveryAddress ?>&nbsp;</td>
 						<td ><?php print $orderData->NetAmount ?>&nbsp;</td>
 						<td  class="white_field">
 							<input type="hidden" name="action" value="delete_order">
-							<input type="hidden" name="order_number" value="<?php print $orderData->Number ?>">
+							<input type="hidden" name="order_id" value="<?php print $orderData->Id ?>">
 							<input type="submit" value="Delete order">
 						</td>
 						</form>
@@ -223,7 +217,7 @@ try
 	}
 ?>
 <h1>Create debtor</h1>
-<form action="<?php echo $me . "?token=" . $_REQUEST['token'] . "&appToken=" . $_REQUEST['appToken'];?>" method="post">
+<form action="<?php echo $me . "?agreementGrantToken=" . $_REQUEST['agreementGrantToken'] . "&appSecretToken=" . $_REQUEST['appSecretToken'];?>" method="post">
 	<table border="0">
 		<tr>
 			<td>Number</td><td><input type="text" name="debtor_number"></td>
@@ -233,6 +227,18 @@ try
 		</tr>
 		<tr>
 			<td>Address</td><td><input type="text" name="debtor_address"></td>
+		</tr>
+		<tr>
+			<td>Postal Code</td><td><input type="text" name="debtor_postalcode"></td>
+		</tr>
+		<tr>
+			<td>City</td><td><input type="text" name="debtor_city"></td>
+		</tr>
+		<tr>
+			<td>Country</td><td><input type="text" name="debtor_country"></td>
+		</tr>
+		<tr>
+			<td>Corporate Identification No. (CVR)</td><td><input type="text" name="debtor_cinumber"></td>
 		</tr>
 		<tr>
 			<td></td>
