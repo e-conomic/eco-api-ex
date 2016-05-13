@@ -47,14 +47,7 @@ try
 		array(
 			"trace" => 1,
 			"exceptions" => 1,
-			"features" => SOAP_SINGLE_ELEMENT_ARRAYS,
-			"stream_context" => stream_context_create(
-				array(
-					"http" => array(
-						"header" => "X-EconomicAppIdentifier: Awesomeness to the max"
-					)
-				)
-			)
+			"features" => SOAP_SINGLE_ELEMENT_ARRAYS
 		)
 	);
 	$client->ConnectWithToken(

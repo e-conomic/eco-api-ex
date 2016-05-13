@@ -52,7 +52,7 @@ try
 			"stream_context" => stream_context_create(
 				array(
 					"http" => array(
-						"header" => "X-EconomicAppIdentifier: Awesomeness to the max"
+						"header" => "X-EconomicAppIdentifier: MyCoolIntegration/1.1 (http://example.com/MyCoolIntegration/; MyCoolIntegration@example.com) BasedOnSuperLib/1.4"
 					)
 				)
 			)
