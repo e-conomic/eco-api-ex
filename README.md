@@ -17,7 +17,7 @@ using (var operationScope = new OperationContextScope(session.InnerChannel))
     requestMessage.Headers["X-EconomicAppIdentifier"] = "MyCoolIntegration/1.1 (http://example.com/MyCoolIntegration/; MyCoolIntegration@example.com) BasedOnSuperLib/1.4";
     OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = requestMessage;
 
-    session.Connect(<agreement>, <user>, <password>);
+    session.ConnectWithToken(<aggreement_grant_token>, <app_secret_token>);
 }
 ```
-The AppIdentifier is only readable by e-conomic. Please include as much information as necessary for us to be able to reach you the developers efficiently.
+The AppIdentifier is only readable by e-conomic. Please include as much information as necessary for us to be able to reach you, the developers, efficiently.
