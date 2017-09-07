@@ -1,5 +1,5 @@
-#### Looking for e-conomic .Net SDK? It has moved!
-Find the SDK here: https://github.com/e-conomic/eco-api-sdk
+#### Looking for e-conomic .Net SDK?
+The SDK is no longer supported and is not recommended for production consumption.
 
 # e-conomic API examples
 ##Examples for basic e-conomic SOAP API and REST API interaction.
