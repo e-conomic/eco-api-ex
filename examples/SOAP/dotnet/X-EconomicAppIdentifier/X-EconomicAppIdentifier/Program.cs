@@ -40,9 +40,6 @@ namespace X_EconomicAppIdentifier
                 // Connect as administrator
                 //session.ConnectAsAdministrator(ADMINAGREEMENT, "ADMINUSER", "PASS", ENDUSERAGREEMENT);
 
-                // Connect with credentials
-                //session.Connect(ENDUSERAGREEMENT, "USER", "PASS");
-
                 // Connect with token
                 //session.ConnectWithToken("AGREEMENTGRANTTOKEN","APPSECRETTOKEN");
             }
