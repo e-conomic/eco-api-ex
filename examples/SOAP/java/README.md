@@ -1,4 +1,4 @@
-Java example SOAP client
+Java example SOAP client. This example is not maintained.
 
 To compile using Maven:
 
