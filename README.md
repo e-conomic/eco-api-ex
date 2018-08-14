@@ -1,6 +1,3 @@
-#### Looking for e-conomic .Net SDK?
-The SDK is no longer supported and is not recommended for production consumption.
-
 # e-conomic API examples
 ##Examples for basic e-conomic SOAP API and REST API interaction.
 
@@ -17,3 +14,7 @@ using (var operationScope = new OperationContextScope(session.InnerChannel))
 ```
 
 You can find our full API authentication guide here: https://www.e-conomic.com/developer/connect
+
+
+#### Looking for the e-conomic .net SDK (the dll)?
+The SDK is end-of-life and is no longer supported and is not recommended for production use.
