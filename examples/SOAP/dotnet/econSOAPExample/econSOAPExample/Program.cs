@@ -27,20 +27,9 @@ namespace econSOAPExample
             // A necessary setting as the session is put in a cookie
             ((BasicHttpBinding)session.Endpoint.Binding).AllowCookies = true;
 
-
             using (new OperationContextScope(session.InnerChannel))
             {
-                //Setting the X-EconomicAppIdentifier HTTP Header. Only required for ConnectAsAdministrator.
-                //var requestMessage = new HttpRequestMessageProperty();
-                //requestMessage.Headers["X-EconomicAppIdentifier"] =
-                //    "MyCoolIntegration/1.1 (http://example.com/MyCoolIntegration/; MyCoolIntegration@example.com) BasedOnSuperLib/1.4";
-                //OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = requestMessage;
-
-                // Connect as administrator
-                //session.ConnectAsAdministrator(ADMINAGREEMENT, "ADMINUSER", "PASS", ENDUSERAGREEMENT);
-
-                // Connect with token
-                session.ConnectWithToken("AGREEMENTGRANTTOKEN", "APPSECRETTOKEN");
+                             session.ConnectWithToken("AGREEMENTGRANTTOKEN", "APPSECRETTOKEN");
             }
         }
 
