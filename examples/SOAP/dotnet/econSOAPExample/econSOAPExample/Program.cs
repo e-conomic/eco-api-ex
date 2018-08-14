@@ -1,15 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Net.Mime;
-using System.Reflection;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.Threading.Tasks;
 //Using the imported service reference. You may have another name for the reference.
 using econSOAPExample.econSoap;
 
@@ -19,6 +9,16 @@ namespace econSOAPExample
     {
         static void Main(string[] args)
         {
+            // Include this in the start of your implementation to allow dotnet to use higher tls version than 1.0
+            // e-conomic support tls 1.2; use the highest tls version your framework allows.
+            // This line will work on NET4.5 and up
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+
+            // This line will work on NET4.0 if you have NET4.5 installed on the system it is running on
+            //System.Net.ServicePointManager.SecurityProtocol = (System.Net.SecurityProtocolType)3072;
+
+            // If you are building NET3.5 then you need  Reliability Rollup HR-1605 to support higher tls versions
+
             PrintCompanyName();
         }
 
@@ -27,7 +27,7 @@ namespace econSOAPExample
             // A necessary setting as the session is put in a cookie
             ((BasicHttpBinding)session.Endpoint.Binding).AllowCookies = true;
 
-            
+
             using (new OperationContextScope(session.InnerChannel))
             {
                 //Setting the X-EconomicAppIdentifier HTTP Header. Only required for ConnectAsAdministrator.
@@ -40,7 +40,7 @@ namespace econSOAPExample
                 //session.ConnectAsAdministrator(ADMINAGREEMENT, "ADMINUSER", "PASS", ENDUSERAGREEMENT);
 
                 // Connect with token
-                session.ConnectWithToken("AGREEMENTGRANTTOKEN","APPSECRETTOKEN");
+                session.ConnectWithToken("AGREEMENTGRANTTOKEN", "APPSECRETTOKEN");
             }
         }
 
@@ -60,7 +60,6 @@ namespace econSOAPExample
                 session.Disconnect();
                 Console.WriteLine("Done");
                 Console.ReadKey();
-
             }
         }
     }
