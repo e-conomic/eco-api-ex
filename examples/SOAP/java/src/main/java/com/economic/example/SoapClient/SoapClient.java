@@ -15,9 +15,8 @@ import java.util.Collections;
 
 public class SoapClient {
     public static void main(String[] args) {
-        int agreementNumber = 000000;
-        String userName = "XXX";
-        String password = "********";
+        String agreementGrantToken = "********";
+        String appSecretToken = "********";
 
         URL apiUrl = null;
         try {
@@ -33,27 +32,13 @@ public class SoapClient {
         //Enable session cookies
         bindingProvider.getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY,true);
 
-        //Add X-EconomicAppIdentifier header
-        Map<String, List<String>> headers = new HashMap<String, List<String>>();
-        headers.put("X-EconomicAppIdentifier", Collections.singletonList("X-EconomicAppIdentifier: MyCoolIntegration/1.1 (http://example.com/MyCoolIntegration/; MyCoolIntegration@example.com) BasedOnSuperLib/1.4"));
-        bindingProvider.getRequestContext().put("javax.xml.ws.http.request.headers", headers);
-
         try {
-            session.connect(agreementNumber, userName, password);
+            session.connectwithtoken(appSecretToken, agreementGrantToken);
         } catch (Exception e) {
             System.out.println("Connection error! \n" + e);
             return;
         }
         System.out.println("Connection successful!");
-
-        try {
-            session.verifyXEconomicAppIdentifier();
-        } catch (Exception e) {
-            System.out.println("X-EconomicAppIdentifier not valid! \n" + e);
-            return;
-        }
-        System.out.println("X-EconomicAppIdentifier is valid!");
-
 
 
         ArrayOfOrderHandle orders = session.orderGetAll();
