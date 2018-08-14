@@ -1,4 +1,5 @@
-Java example SOAP client. This example is not maintained.
+Java example SOAP client. 
+_This example is not maintained and comes as is._
 
 To compile using Maven:
 
