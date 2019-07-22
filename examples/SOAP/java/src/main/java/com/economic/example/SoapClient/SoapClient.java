@@ -33,7 +33,7 @@ public class SoapClient {
         bindingProvider.getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY,true);
 
         try {
-            session.connectwithtoken(appSecretToken, agreementGrantToken);
+            session.connectwithtoken(agreementGrantToken, appSecretToken);
         } catch (Exception e) {
             System.out.println("Connection error! \n" + e);
             return;
