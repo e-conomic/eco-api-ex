@@ -25,11 +25,11 @@ namespace econSOAPExample
         private static void Connect(EconomicWebServiceSoapClient session)
         {
             // A necessary setting as the session is put in a cookie
-            ((BasicHttpBinding)session.Endpoint.Binding).AllowCookies = true;
+            ((BasicHttpBinding) session.Endpoint.Binding).AllowCookies = true;
 
             using (new OperationContextScope(session.InnerChannel))
             {
-                             session.ConnectWithToken("AGREEMENTGRANTTOKEN", "APPSECRETTOKEN");
+                session.ConnectWithToken("AGREEMENTGRANTTOKEN", "APPSECRETTOKEN");
             }
         }
 
